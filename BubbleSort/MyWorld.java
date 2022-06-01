@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    int[] array;
+    int[] array = new int[8];
     /**
      * Constructor for objects of class MyWorld.
      * 
