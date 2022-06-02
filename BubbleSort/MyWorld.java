@@ -10,7 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     int[] array = new int[8];
-    int[] squareArray = new int[8];
+    NumberBackground[] squares = new NumberBackground[8];
     int spawnLocationX = 30;
     int spawnLocationY = 30;
     boolean isRowDone = false;
@@ -41,16 +41,17 @@ public class MyWorld extends World
     {
         array = new int[0];
     }
+    
     void prettyPrint()
     {
         NumberBackground numberBackground = new NumberBackground();
         for (int i = 0; i < array.length; i++)
         {
-         
-         addObject(numberBackground, spawnLocationX, spawnLocationY);
+         squares[i] = new NumberBackground();
+         addObject(squares[i], spawnLocationX, spawnLocationY);
          spawnLocationX += 60;
          
-         numberBackground.getImage().drawString(""+array[i], 17, 30); 
+         squares[i].getImage().drawString(""+array[i], 17, 30); 
          if(isRowDone == true)
          {
             spawnLocationY += 60; 
