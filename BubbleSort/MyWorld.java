@@ -10,8 +10,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     int[] array = new int[8];
+    int[] squareArray = new int[8];
     int spawnLocationX = 30;
     int spawnLocationY = 30;
+    boolean isRowDone = false;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -28,7 +30,7 @@ public class MyWorld extends World
             array[i] = GetRandomNumber(1,99);
         }
         prettyPrint();
-        //BubbleSort();
+        BubbleSort();
     }
     public int GetRandomNumber(int start,int end)
     {
@@ -44,14 +46,18 @@ public class MyWorld extends World
         NumberBackground numberBackground = new NumberBackground();
         for (int i = 0; i < array.length; i++)
         {
-         addObject(numberBackground, spawnLocationX, spawnLocationY);
-         spawnLocationX+=60;
-         spawnLocationY+=60;
-         numberBackground.getImage().drawString(""+array[i], 0, 50); 
          
+         addObject(numberBackground, spawnLocationX, spawnLocationY);
+         spawnLocationX += 60;
+         
+         numberBackground.getImage().drawString(""+array[i], 17, 30); 
+         if(isRowDone == true)
+         {
+            spawnLocationY += 60; 
+            spawnLocationX = 30;
+            isRowDone = false;
+         }
         }
-        
-        
     }
     public void BubbleSort()
     {
@@ -67,6 +73,7 @@ public class MyWorld extends World
                 }
             }
             prettyPrint();
+            isRowDone = true;
             
         }
     }
