@@ -1,3 +1,4 @@
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -9,6 +10,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     int[] array = new int[8];
+    int spawnLocationX = 30;
+    int spawnLocationY = 30;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -16,15 +19,16 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
-        
+        super(800, 600, 1); 
+     
+       
         int x = 8;
         for(int i=0;i<x;i++)
         {
             array[i] = GetRandomNumber(1,99);
         }
         prettyPrint();
-        BubbleSort();
+        //BubbleSort();
     }
     public int GetRandomNumber(int start,int end)
     {
@@ -37,12 +41,17 @@ public class MyWorld extends World
     }
     void prettyPrint()
     {
+        NumberBackground numberBackground = new NumberBackground();
         for (int i = 0; i < array.length; i++)
         {
-            System.out.print(array[i] + " ");
+         addObject(numberBackground, spawnLocationX, spawnLocationY);
+         spawnLocationX+=60;
+         spawnLocationY+=60;
+         numberBackground.getImage().drawString(""+array[i], 0, 50); 
+         
         }
         
-        System.out.println();
+        
     }
     public void BubbleSort()
     {
@@ -58,6 +67,7 @@ public class MyWorld extends World
                 }
             }
             prettyPrint();
+            
         }
     }
 }
