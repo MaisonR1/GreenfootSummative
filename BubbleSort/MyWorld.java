@@ -10,7 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     int[] array = new int[8];
-    int[] squareArray = new int[8];
+    NumberBackground[] squares = new NumberBackground[8];
     int spawnLocationX = 30;
     int spawnLocationY = 30;
     boolean isRowDone = false;
@@ -24,44 +24,56 @@ public class MyWorld extends World
         super(800, 600, 1); 
      
        
-        int x = 8;
-        for(int i=0;i<x;i++)
+        for(int i=0;i<array.length;i++)
         {
             array[i] = GetRandomNumber(1,99);
         }
-        prettyPrint();
-        BubbleSort();
+        //prettyPrint();
+        BubbleSort();   
     }
     public int GetRandomNumber(int start,int end)
     {
        int normal = Greenfoot.getRandomNumber(end-start+1);
        return normal+start;
     }
-    public void MyWorld()
-    {
-        array = new int[0];
-    }
+    
     void prettyPrint()
     {
         NumberBackground numberBackground = new NumberBackground();
         for (int i = 0; i < array.length; i++)
         {
+         squares[i] = new NumberBackground();
+         addObject(squares[i], spawnLocationX, spawnLocationY);
          
-         addObject(numberBackground, spawnLocationX, spawnLocationY);
          spawnLocationX += 60;
+         squares[i].getImage().drawString(""+array[i], 17, 30); 
+         if(i>=7)
+         {
+             isRowDone=true;
+         }
          
-         numberBackground.getImage().drawString(""+array[i], 17, 30); 
-         if(isRowDone == true)
+         /*int x = 0;
+         x++;
+         if(x >= 8)
          {
             spawnLocationY += 60; 
             spawnLocationX = 30;
+            x=0;
+         }*/
+         
+         if(isRowDone == true)
+         {
+             
+            spawnLocationY += 60; 
+            spawnLocationX = 30;
             isRowDone = false;
+            
          }
         }
     }
     public void BubbleSort()
     {
-        for(int l = 0; l < array.length; l++)
+        for(int l = 0; l < array.length-1; l++)
         {
             for(int i = 0; i < array.length-1; i++)
             {
@@ -72,8 +84,9 @@ public class MyWorld extends World
                     array[i+1] = x;
                 }
             }
+            
             prettyPrint();
-            isRowDone = true;
+            //isRowDone = true;
             
         }
     }
