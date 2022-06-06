@@ -84,7 +84,7 @@ public class MyWorld extends World
         boolean stopIfDone = false;
         boolean codeStop = false;
         //Each time this runs it sorts the numbers for 1 step and prints results
-       for(int l = 0; l < array.length-1; l++)
+        for(int l = 0; l < array.length-1; l++)
         {
             //This sorts the numbers for 1 step
             for(int i = 0; i < array.length-1; i++)
@@ -115,6 +115,6 @@ public class MyWorld extends World
             stopIfDone = false;
             
             
-       }
+        }
     }
 }
