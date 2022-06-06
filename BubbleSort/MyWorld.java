@@ -51,15 +51,7 @@ public class MyWorld extends World
          {
              isRowDone=true;
          }
-         
-         /*int x = 0;
-         x++;
-         if(x >= 8)
-         {
-            spawnLocationY += 60; 
-            spawnLocationX = 30;
-            x=0;
-         }*/
+        
          
          if(isRowDone == true)
          {
@@ -73,6 +65,8 @@ public class MyWorld extends World
     }
     public void BubbleSort()
     {
+        boolean stopIfDone = false;
+        boolean codeStop = false;
         for(int l = 0; l < array.length-1; l++)
         {
             for(int i = 0; i < array.length-1; i++)
@@ -82,11 +76,22 @@ public class MyWorld extends World
                     int x = array[i];
                     array[i] = array[i+1];
                     array[i+1] = x;
+                 
+                    stopIfDone = true;
+                    
+                }  
+                if(!stopIfDone && i > 3)
+                {
+                    codeStop = true;
                 }
             }
+                
+            if(!codeStop)
+            {
+                prettyPrint();
+            }
+            stopIfDone = false;
             
-            prettyPrint();
-            //isRowDone = true;
             
         }
     }
